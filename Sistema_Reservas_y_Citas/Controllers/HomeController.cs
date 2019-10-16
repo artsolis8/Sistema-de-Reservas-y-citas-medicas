@@ -26,5 +26,13 @@ namespace Sistema_Reservas_y_Citas.Controllers
 
             return View();
         }
+
+        public ActionResult Member()
+        {
+            ViewBag.Message = "Integrantes";
+
+            return View();
+        }
+
     }
 }
