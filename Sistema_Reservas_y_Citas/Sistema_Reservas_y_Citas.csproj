@@ -280,6 +280,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\20191016_203827.jpg" />
+    <Content Include="images\20191016_203839.jpg" />
+    <Content Include="images\doctores.png" />
+    <Content Include="images\jjjjjj.png" />
     <Content Include="Models\CitaMedicaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CitaMedicaModel.edmx</DependentUpon>
