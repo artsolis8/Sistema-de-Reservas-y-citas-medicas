@@ -21,7 +21,7 @@ namespace Sistema_Reservas_y_Citas.Controllers
             return View(db.Reserva.ToList());
         }
 
-        // GET: Reservas/Details/5
+        // GET: Reservas/Details/3
         public ActionResult Details(int? id)
         {
             if (id == null)
