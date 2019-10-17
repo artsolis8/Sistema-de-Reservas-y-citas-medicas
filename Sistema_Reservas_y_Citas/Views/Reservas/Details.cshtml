@@ -1,0 +1,73 @@
+﻿@model Sistema_Reservas_y_Citas.Models.Reserva
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.paciente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paciente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.medico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.medico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.funcionario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.funcionario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_reservada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_reservada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estados)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estados)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.monto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("volver a la lista", "Index")
+</p>

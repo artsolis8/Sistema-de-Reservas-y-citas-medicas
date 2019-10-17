@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Sistema_Reservas_y_Citas.Models.Reserva>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.paciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.medico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.funcionario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_reservada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.monto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.paciente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.medico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.funcionario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_reservada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estados)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.monto)
+        </td>
+        <td>
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }) |
+        </td>
+    </tr>
+}
+
+</table>
