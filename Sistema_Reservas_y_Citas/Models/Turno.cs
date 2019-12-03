@@ -14,9 +14,18 @@ namespace Sistema_Reservas_y_Citas.Models
     
     public partial class Turno
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Turno()
+        {
+            this.Cita = new HashSet<Cita>();
+        }
+    
         public int id { get; set; }
         public string descripcion { get; set; }
-        public Nullable<System.DateTime> hora_inicio { get; set; }
-        public Nullable<System.DateTime> hora_fin { get; set; }
+        public string hora_inicio { get; set; }
+        public string hora_fin { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cita> Cita { get; set; }
     }
 }
