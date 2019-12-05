@@ -14,12 +14,6 @@ namespace Sistema_Reservas_y_Citas.Models
     
     public partial class Reserva
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Reserva()
-        {
-            this.Cita = new HashSet<Cita>();
-        }
-    
         public int id { get; set; }
         public Nullable<int> paciente { get; set; }
         public Nullable<int> medico { get; set; }
@@ -28,8 +22,5 @@ namespace Sistema_Reservas_y_Citas.Models
         public Nullable<System.DateTime> fecha_reservada { get; set; }
         public Nullable<int> estados { get; set; }
         public Nullable<double> monto { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cita> Cita { get; set; }
     }
 }

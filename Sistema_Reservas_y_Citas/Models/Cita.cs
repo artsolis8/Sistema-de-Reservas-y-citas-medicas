@@ -22,12 +22,5 @@ namespace Sistema_Reservas_y_Citas.Models
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> consultorio { get; set; }
         public Nullable<int> reserva { get; set; }
-    
-        public virtual Consultorio Consultorio1 { get; set; }
-        public virtual Turno Turno1 { get; set; }
-        public virtual Funcionario Funcionario1 { get; set; }
-        public virtual Medico Medico1 { get; set; }
-        public virtual Paciente Paciente1 { get; set; }
-        public virtual Reserva Reserva1 { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace Sistema_Reservas_y_Citas.Models
     
     public partial class Paciente
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Paciente()
-        {
-            this.Cita = new HashSet<Cita>();
-        }
-    
         public int id { get; set; }
         public Nullable<int> nro_doc { get; set; }
         public string nombre { get; set; }
@@ -31,8 +25,5 @@ namespace Sistema_Reservas_y_Citas.Models
         public Nullable<int> tipo_sexo { get; set; }
         public Nullable<int> tipo_estado { get; set; }
         public string email { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cita> Cita { get; set; }
     }
 }

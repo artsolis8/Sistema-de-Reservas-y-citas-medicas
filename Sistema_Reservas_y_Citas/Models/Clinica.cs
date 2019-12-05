@@ -14,20 +14,10 @@ namespace Sistema_Reservas_y_Citas.Models
     
     public partial class Clinica
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Clinica()
-        {
-            this.Consultorio = new HashSet<Consultorio>();
-        }
-    
         public int id { get; set; }
         public string descripcion { get; set; }
         public string direccion { get; set; }
         public Nullable<int> ciudad { get; set; }
         public string telefono { get; set; }
-    
-        public virtual Ciudad Ciudad1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultorio> Consultorio { get; set; }
     }
 }

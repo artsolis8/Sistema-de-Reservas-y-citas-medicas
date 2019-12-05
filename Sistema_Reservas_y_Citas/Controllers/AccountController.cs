@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Sistema_Reservas_y_Citas.Models;
+using System.Net;
 
 namespace Sistema_Reservas_y_Citas.Controllers
 {
@@ -91,6 +92,30 @@ namespace Sistema_Reservas_y_Citas.Controllers
             }
         }
 
+
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> LoginWpf(string email, string password)
+        {
+
+            // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
+            // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(email, password, false, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                case SignInStatus.LockedOut:
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                case SignInStatus.RequiresVerification:
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                case SignInStatus.Failure:
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                default:
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

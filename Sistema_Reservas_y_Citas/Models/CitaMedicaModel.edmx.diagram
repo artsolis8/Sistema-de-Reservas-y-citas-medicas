@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e72944ce53454834b6dc6e7ab25e7db7" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="e72944ce53454834b6dc6e7ab25e7db7" Name="Diagram1">
         <EntityTypeShape EntityType="ConsultaMedicaModel.Cita" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ConsultaMedicaModel.Ciudad" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ConsultaMedicaModel.Clinica" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
@@ -17,14 +17,6 @@
         <EntityTypeShape EntityType="ConsultaMedicaModel.Turno" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ConsultaMedicaModel.Usuario" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ConsultaMedicaModel.Vacacion" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_Cita_Consultorio" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_Cita_Turno" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_CitaFuncionario" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_CitaMedico" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_CitaPaciente" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_CitaReserva" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_Ciudad_Clinica" />
-        <AssociationConnector Association="ConsultaMedicaModel.FK_Clinica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

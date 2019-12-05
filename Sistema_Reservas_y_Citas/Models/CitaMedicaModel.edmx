@@ -117,8 +117,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
-          <Property Name="hora_inicio" Type="varchar" MaxLength="50" />
-          <Property Name="hora_fin" Type="varchar" MaxLength="50" />
+          <Property Name="hora_inicio" Type="datetime" />
+          <Property Name="hora_fin" Type="datetime" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -128,6 +128,8 @@
           <Property Name="usuario" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ConsultaMedica.dbo.Vacacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Vacacion">
           <Key>
             <PropertyRef Name="id" />
@@ -137,102 +139,6 @@
           <Property Name="fecha_fin" Type="datetime" />
           <Property Name="medico" Type="int" />
         </EntityType>
-        <Association Name="FK_Cita_Consultorio">
-          <End Role="Consultorio" Type="Self.Consultorio" Multiplicity="0..1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Consultorio">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="consultorio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cita_Turno">
-          <End Role="Turno" Type="Self.Turno" Multiplicity="0..1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Turno">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="turno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaFuncionario">
-          <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="0..1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Funcionario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="funcionario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaMedico">
-          <End Role="Medico" Type="Self.Medico" Multiplicity="0..1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medico">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="medico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaPaciente">
-          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="paciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaReserva">
-          <End Role="Reserva" Type="Self.Reserva" Multiplicity="0..1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reserva">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="reserva" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ciudad_Clinica">
-          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="0..1" />
-          <End Role="Clinica" Type="Self.Clinica" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ciudad">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Clinica">
-              <PropertyRef Name="ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinica">
-          <End Role="Clinica" Type="Self.Clinica" Multiplicity="0..1" />
-          <End Role="Consultorio" Type="Self.Consultorio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clinica">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Consultorio">
-              <PropertyRef Name="clinica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ConsultaMedicaModelStoreContainer">
           <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
@@ -245,39 +151,14 @@
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Vacacion" EntityType="Self.Vacacion" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cita_Consultorio" Association="Self.FK_Cita_Consultorio">
-            <End Role="Consultorio" EntitySet="Consultorio" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cita_Turno" Association="Self.FK_Cita_Turno">
-            <End Role="Turno" EntitySet="Turno" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaFuncionario" Association="Self.FK_CitaFuncionario">
-            <End Role="Funcionario" EntitySet="Funcionario" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaMedico" Association="Self.FK_CitaMedico">
-            <End Role="Medico" EntitySet="Medico" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaPaciente" Association="Self.FK_CitaPaciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaReserva" Association="Self.FK_CitaReserva">
-            <End Role="Reserva" EntitySet="Reserva" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ciudad_Clinica" Association="Self.FK_Ciudad_Clinica">
-            <End Role="Ciudad" EntitySet="Ciudad" />
-            <End Role="Clinica" EntitySet="Clinica" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinica" Association="Self.FK_Clinica">
-            <End Role="Clinica" EntitySet="Clinica" />
-            <End Role="Consultorio" EntitySet="Consultorio" />
-          </AssociationSet>
+          <EntitySet Name="Vacacion" EntityType="Self.Vacacion" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vacacion].[id] AS [id], 
+    [Vacacion].[fecha_inicio] AS [fecha_inicio], 
+    [Vacacion].[fecha_fin] AS [fecha_fin], 
+    [Vacacion].[medico] AS [medico]
+    FROM [dbo].[Vacacion] AS [Vacacion]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -295,12 +176,6 @@
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="consultorio" Type="Int32" />
           <Property Name="reserva" Type="Int32" />
-          <NavigationProperty Name="Consultorio1" Relationship="ConsultaMedicaModel.FK_Cita_Consultorio" FromRole="Cita" ToRole="Consultorio" />
-          <NavigationProperty Name="Turno1" Relationship="ConsultaMedicaModel.FK_Cita_Turno" FromRole="Cita" ToRole="Turno" />
-          <NavigationProperty Name="Funcionario1" Relationship="ConsultaMedicaModel.FK_CitaFuncionario" FromRole="Cita" ToRole="Funcionario" />
-          <NavigationProperty Name="Medico1" Relationship="ConsultaMedicaModel.FK_CitaMedico" FromRole="Cita" ToRole="Medico" />
-          <NavigationProperty Name="Paciente1" Relationship="ConsultaMedicaModel.FK_CitaPaciente" FromRole="Cita" ToRole="Paciente" />
-          <NavigationProperty Name="Reserva1" Relationship="ConsultaMedicaModel.FK_CitaReserva" FromRole="Cita" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="Ciudad">
           <Key>
@@ -308,7 +183,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clinica" Relationship="ConsultaMedicaModel.FK_Ciudad_Clinica" FromRole="Ciudad" ToRole="Clinica" />
         </EntityType>
         <EntityType Name="Clinica">
           <Key>
@@ -319,8 +193,6 @@
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ciudad" Type="Int32" />
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ciudad1" Relationship="ConsultaMedicaModel.FK_Ciudad_Clinica" FromRole="Clinica" ToRole="Ciudad" />
-          <NavigationProperty Name="Consultorio" Relationship="ConsultaMedicaModel.FK_Clinica" FromRole="Clinica" ToRole="Consultorio" />
         </EntityType>
         <EntityType Name="Consultorio">
           <Key>
@@ -329,8 +201,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="clinica" Type="Int32" />
-          <NavigationProperty Name="Cita" Relationship="ConsultaMedicaModel.FK_Cita_Consultorio" FromRole="Consultorio" ToRole="Cita" />
-          <NavigationProperty Name="Clinica1" Relationship="ConsultaMedicaModel.FK_Clinica" FromRole="Consultorio" ToRole="Clinica" />
         </EntityType>
         <EntityType Name="Disponibilidad">
           <Key>
@@ -355,7 +225,6 @@
           <Property Name="ruc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tipo_cargo" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cita" Relationship="ConsultaMedicaModel.FK_CitaFuncionario" FromRole="Funcionario" ToRole="Cita" />
         </EntityType>
         <EntityType Name="Medico">
           <Key>
@@ -371,7 +240,6 @@
           <Property Name="ruc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tipo_especialidad" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cita" Relationship="ConsultaMedicaModel.FK_CitaMedico" FromRole="Medico" ToRole="Cita" />
         </EntityType>
         <EntityType Name="Paciente">
           <Key>
@@ -388,7 +256,6 @@
           <Property Name="tipo_sexo" Type="Int32" />
           <Property Name="tipo_estado" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cita" Relationship="ConsultaMedicaModel.FK_CitaPaciente" FromRole="Paciente" ToRole="Cita" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
@@ -402,7 +269,6 @@
           <Property Name="fecha_reservada" Type="DateTime" Precision="3" />
           <Property Name="estados" Type="Int32" />
           <Property Name="monto" Type="Double" />
-          <NavigationProperty Name="Cita" Relationship="ConsultaMedicaModel.FK_CitaReserva" FromRole="Reserva" ToRole="Cita" />
         </EntityType>
         <EntityType Name="Turno">
           <Key>
@@ -410,9 +276,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="hora_inicio" Type="String" />
-          <Property Name="hora_fin" Type="String" />
-          <NavigationProperty Name="Cita" Relationship="ConsultaMedicaModel.FK_Cita_Turno" FromRole="Turno" ToRole="Cita" />
+          <Property Name="hora_inicio" Type="DateTime" Precision="3" />
+          <Property Name="hora_fin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -444,135 +309,7 @@
           <EntitySet Name="Turno" EntityType="Self.Turno" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Vacacion" EntityType="Self.Vacacion" />
-          <AssociationSet Name="FK_Cita_Consultorio" Association="ConsultaMedicaModel.FK_Cita_Consultorio">
-            <End Role="Consultorio" EntitySet="Consultorio" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cita_Turno" Association="ConsultaMedicaModel.FK_Cita_Turno">
-            <End Role="Turno" EntitySet="Turno" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaFuncionario" Association="ConsultaMedicaModel.FK_CitaFuncionario">
-            <End Role="Funcionario" EntitySet="Funcionario" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaMedico" Association="ConsultaMedicaModel.FK_CitaMedico">
-            <End Role="Medico" EntitySet="Medico" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaPaciente" Association="ConsultaMedicaModel.FK_CitaPaciente">
-            <End Role="Paciente" EntitySet="Paciente" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CitaReserva" Association="ConsultaMedicaModel.FK_CitaReserva">
-            <End Role="Reserva" EntitySet="Reserva" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ciudad_Clinica" Association="ConsultaMedicaModel.FK_Ciudad_Clinica">
-            <End Role="Ciudad" EntitySet="Ciudad" />
-            <End Role="Clinica" EntitySet="Clinica" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Clinica" Association="ConsultaMedicaModel.FK_Clinica">
-            <End Role="Clinica" EntitySet="Clinica" />
-            <End Role="Consultorio" EntitySet="Consultorio" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Cita_Consultorio">
-          <End Type="ConsultaMedicaModel.Consultorio" Role="Consultorio" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Cita" Role="Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Consultorio">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="consultorio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cita_Turno">
-          <End Type="ConsultaMedicaModel.Turno" Role="Turno" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Cita" Role="Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Turno">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="turno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaFuncionario">
-          <End Type="ConsultaMedicaModel.Funcionario" Role="Funcionario" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Cita" Role="Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Funcionario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="funcionario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaMedico">
-          <End Type="ConsultaMedicaModel.Medico" Role="Medico" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Cita" Role="Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medico">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="medico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaPaciente">
-          <End Type="ConsultaMedicaModel.Paciente" Role="Paciente" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Cita" Role="Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paciente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="paciente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CitaReserva">
-          <End Type="ConsultaMedicaModel.Reserva" Role="Reserva" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Cita" Role="Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reserva">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="reserva" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ciudad_Clinica">
-          <End Type="ConsultaMedicaModel.Ciudad" Role="Ciudad" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Clinica" Role="Clinica" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ciudad">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Clinica">
-              <PropertyRef Name="ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Clinica">
-          <End Type="ConsultaMedicaModel.Clinica" Role="Clinica" Multiplicity="0..1" />
-          <End Type="ConsultaMedicaModel.Consultorio" Role="Consultorio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clinica">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Consultorio">
-              <PropertyRef Name="clinica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
